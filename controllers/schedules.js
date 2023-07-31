@@ -31,7 +31,20 @@ async function index(req, res) {
   }
 }
 
+async function show(req, res) {
+  try {
+    const { scheduleId } = req.params;
+    const schedule = await Schedule.findById(scheduleId)
+    .populate('owner')
+    res.status(200).json(schedule);
+  } catch (error) {
+    console.log(error);
+    res.status(500).json(error);
+  }
+}
+
 export {
   index,
   create,
+  show,
 }

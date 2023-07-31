@@ -13,5 +13,7 @@ router.use(decodeUserFromToken)
 // Route for creating a new schedule
 router.post('/', checkAuth, schedulesCtrl.create);
 router.get('/', checkAuth, schedulesCtrl.index);
+// Route for fetching a specific schedule by ID
+router.get('/:scheduleId', checkAuth, schedulesCtrl.show);
 
 export { router }
