@@ -17,5 +17,7 @@ router.get('/', checkAuth, schedulesCtrl.index);
 router.get('/:scheduleId', checkAuth, schedulesCtrl.show);
 // Route for updating a specific schedule by ID
 router.put('/:scheduleId', checkAuth, schedulesCtrl.update);
+// Route for deleting a specific schedule by ID
+router.delete('/:scheduleId', checkAuth, schedulesCtrl.delete)
 
 export { router }

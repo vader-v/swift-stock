@@ -58,9 +58,30 @@ async function update(req, res) {
   }
 }
 
+const deleteSchedule = async (req, res) => {
+  try {
+    const schedule = await Schedule.findByIdAndDelete(req.params.scheduleId);
+    if (!schedule) {
+      return res.status(404).json({ error: 'Schedule not found' });
+    }
+
+    const profile = await Profile.findById(req.user.profile);
+
+    // Remove the schedule from the profile's schedules array
+    profile.schedules.remove(req.params.scheduleId);
+    await profile.save();
+
+    res.json(schedule);
+  } catch (err) {
+    console.log(err);
+    res.status(500).json(err);
+  }
+};
+
 export {
   index,
   create,
   show,
   update,
+  deleteSchedule as delete,
 }
