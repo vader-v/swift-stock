@@ -43,8 +43,24 @@ async function show(req, res) {
   }
 }
 
+async function update(req, res) {
+  try {
+    const schedule = await Schedule.findByIdAndUpdate(
+      req.params.scheduleId,
+      req.body,
+      { new: true }
+    )
+    .populate('owner');
+    res.status(200).json(schedule);
+  } catch (error) {
+    console.log(error);
+    res.status(500).json(error);
+  }
+}
+
 export {
   index,
   create,
   show,
+  update,
 }

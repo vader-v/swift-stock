@@ -15,5 +15,7 @@ router.post('/', checkAuth, schedulesCtrl.create);
 router.get('/', checkAuth, schedulesCtrl.index);
 // Route for fetching a specific schedule by ID
 router.get('/:scheduleId', checkAuth, schedulesCtrl.show);
+// Route for updating a specific schedule by ID
+router.put('/:scheduleId', checkAuth, schedulesCtrl.update);
 
 export { router }

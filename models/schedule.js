@@ -12,7 +12,6 @@ const scheduleSchema = new Schema(
     owner: { type: Schema.Types.ObjectId, ref: 'Profile' },
     startDate: { type: Date, required: true },
     endDate: { type: Date, required: true },
-    customLabels: [{ type: String, required: true }],
     orderReceipts: [orderReceiptSchema],
   },
   {
