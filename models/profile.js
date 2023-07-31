@@ -4,7 +4,8 @@ const Schema = mongoose.Schema
 
 const profileSchema = new Schema({
   name: String,
-  photo: String
+  photo: String,
+  schedules: [{type: Schema.Types.ObjectId, ref: "Schedule" }],
 },{
   timestamps: true,
 })
