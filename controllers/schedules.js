@@ -21,13 +21,13 @@ async function create(req, res) {
 
 async function index(req, res) {
   try {
-  const schedules = await Schedule.find({})
-  .populate('owner')
-  .sort({ createdAt: 'desc' });
-  res.status(200).json(schedules);
+    const schedules = await Schedule.find({ owner: req.user.profile })
+      .populate('owner')
+      .sort({ createdAt: 'desc' });
+    res.status(200).json(schedules);
   } catch (error) {
-  console.log(error);
-  res.status(500).json(error);
+    console.log(error);
+    res.status(500).json(error);
   }
 }
 
